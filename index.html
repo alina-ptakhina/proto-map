@@ -1,6 +1,7 @@
 <HTML>
 <head>
     <title>Map prototype</title>
+    <meta charset="UTF-8" />
 
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
     <!--[if lte IE 8]>
@@ -19,23 +20,23 @@
         var map = L.map('map').setView([59.9316, 30.3263], 12);
 		L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
 			maxZoom: 18,
-			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery В© <a href="http://cloudmade.com">CloudMade</a>'
 		}).addTo(map);
 
-	var marker1 = L.marker([59.934289, 30.306667], {title:'Исаакиевский собор'}).addTo(map);
-	marker1.bindPopup('<a href="http://goo.gl/2QeN1" target="_blank">Исаакиевский собор</a>').openPopup();
+	var marker1 = L.marker([59.934289, 30.306667], {title:'РСЃР°Р°РєРёРµРІСЃРєРёР№ СЃРѕР±РѕСЂ'}).addTo(map);
+	marker1.bindPopup('<a href="http://goo.gl/2QeN1" target="_blank">РСЃР°Р°РєРёРµРІСЃРєРёР№ СЃРѕР±РѕСЂ</a>').openPopup();
 
-	var marker2 = L.marker([59.933333, 30.343333], {title:'Аничков мост'}).addTo(map);
-	marker2.bindPopup('<a href="http://goo.gl/sLcGk" target="_blank">Аничков мост</a>').openPopup();
+	var marker2 = L.marker([59.933333, 30.343333], {title:'РђРЅРёС‡РєРѕРІ РјРѕСЃС‚'}).addTo(map);
+	marker2.bindPopup('<a href="http://goo.gl/sLcGk" target="_blank">РђРЅРёС‡РєРѕРІ РјРѕСЃС‚</a>').openPopup();
 
-    var marker3 = L.marker([59.935833, 30.325556], {title:'Дом книги'}).addTo(map);
-	marker3.bindPopup('<a href="http://goo.gl/U7Hje" target="_blank">Дом книги</a>').openPopup();
+    var marker3 = L.marker([59.935833, 30.325556], {title:'Р”РѕРј РєРЅРёРіРё'}).addTo(map);
+	marker3.bindPopup('<a href="http://goo.gl/U7Hje" target="_blank">Р”РѕРј РєРЅРёРіРё</a>').openPopup();
 	
-	var marker4 = L.marker([59.940161, 30.328597], {title:'Спас на Крови'}).addTo(map);
-	marker4.bindPopup('<a href="http://goo.gl/YYRfm" target="_blank">Спас на Крови</a>').openPopup();
+	var marker4 = L.marker([59.940161, 30.328597], {title:'РЎРїР°СЃ РЅР° РљСЂРѕРІРё'}).addTo(map);
+	marker4.bindPopup('<a href="http://goo.gl/YYRfm" target="_blank">РЎРїР°СЃ РЅР° РљСЂРѕРІРё</a>').openPopup();
 	
-	var marker5 = L.marker([59.940556, 30.313611], {title:'Государственный Эрмитаж'}).addTo(map);
-	marker5.bindPopup('<a href="http://goo.gl/RpoSm" target="_blank">Государственный Эрмитаж</a>').openPopup();
+	var marker5 = L.marker([59.940556, 30.313611], {title:'Р“РѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ Р­СЂРјРёС‚Р°Р¶'}).addTo(map);
+	marker5.bindPopup('<a href="http://goo.gl/RpoSm" target="_blank">Р“РѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ Р­СЂРјРёС‚Р°Р¶</a>').openPopup();
 	
     </script>
         
