@@ -14,7 +14,7 @@
 
 <body>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
-    <div id="map" style="wigth: 100%; height: 100%; position: relative;"></div>
+    <div id="map" style="width: 100%; height: 100%; position: relative;"></div>
 
     <script>
         var map = L.map('map')//.setView([59.9316, 30.3263], 12);
@@ -31,9 +31,17 @@
 				iconSize: [25, 41], // size of the icon
 			});
 			
-            L.marker(e.latlng, {icon: redIcon}).addTo(map)
-                .bindPopup("Вы в радиусе " + radius + " метров отсюда");
-            L.circle(e.latlng, radius).addTo(map);
+            var geolocMarker = L.marker(e.latlng, {icon: redIcon}).addTo(map);
+            geolocMarker.bindPopup("Вы в радиусе " + radius + " метров отсюда");
+            var circle = L.circle(e.latlng, radius).addTo(map);
+			
+			function onMapClick(e) {
+				geolocMarker.setLatLng(e.latlng);
+				circle.setLatLng(e.latlng, radius);
+			}
+
+			map.on('dblclick', onMapClick);
+			
             map.setView(e.latlng, 12);
         }
 
