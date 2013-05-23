@@ -26,7 +26,12 @@
         function onLocationFound(e) {
             var radius = e.accuracy / 2;
 
-            L.marker(e.latlng).addTo(map)
+			var redIcon = L.icon({
+				iconUrl: 'marker-icon-red.png',
+				iconSize: [25, 41], // size of the icon
+			});
+			
+            L.marker(e.latlng, {icon: redIcon}).addTo(map)
                 .bindPopup("Вы в радиусе " + radius + " метров отсюда");
             L.circle(e.latlng, radius).addTo(map);
             map.setView(e.latlng, 12);
