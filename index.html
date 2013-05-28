@@ -18,17 +18,98 @@
 
 	<script>
 
-	var marker1 = L.marker([59.934289, 30.306667], {title:'Исаакиевский собор'}).bindPopup('<a href="http://goo.gl/2QeN1" target="_blank">Исаакиевский собор</a>'),
-		marker2 = L.marker([59.933333, 30.343333], {title:'Аничков мост'}).bindPopup('<a href="http://goo.gl/sLcGk" target="_blank">Аничков мост</a>'),
-		marker3 = L.marker([59.935833, 30.325556], {title:'Дом книги'}).bindPopup('<a href="http://goo.gl/U7Hje" target="_blank">Дом книги</a>'),
-		marker4 = L.marker([59.940161, 30.328597], {title:'Спас на Крови'}).bindPopup('<a href="http://goo.gl/YYRfm" target="_blank">Спас на Крови</a>');
-		marker5 = L.marker([59.940556, 30.313611], {title:'Государственный Эрмитаж'}).bindPopup('<a href="http://goo.gl/RpoSm" target="_blank">Государственный Эрмитаж</a>');
+	function addMarker(latlng, title, link) {
+		return L.marker(latlng, {title: title}).bindPopup('<a href ="' + link + '" target="_blank">' + title + '</a>');
+	}
 
-	var architecture = L.layerGroup([marker2, marker3]),
-		cathedrals = L.layerGroup([marker1, marker4]),
-		museums = L.layerGroup([marker5]),
-		monuments = L.layerGroup([]),
-		theatres = L.layerGroup([]);
+	function addMarkerEntry(entry) {
+		//console.log(entry["latlng"], entry["title"], entry["link"]);
+		return addMarker(entry["latlng"], entry["title"], entry["link"]);
+	}
+
+	function loadMarkerGroup(groupName) {
+		var group = groupName.map(addMarkerEntry);
+		//console.log(group);
+		return group;
+	}
+
+	var cathedrals_data = [
+		{latlng:[59.934289, 30.306667], title:'Исаакиевский собор', link:"http://goo.gl/2QeN1"},
+		{latlng:[59.940161, 30.328597], title:'Спас на Крови', link:"http://goo.gl/YYRfm"},
+		{latlng:[59.939722, 30.283056], title:'Андреевский собор', link:"http://goo.gl/q15pE"},
+		{latlng:[59.934228, 30.324594], title:'Казанский собор', link:"http://goo.gl/ONjmi"},
+		{latlng:[59.948875, 30.395589], title:'Смольный собор', link:"http://goo.gl/LXpSB"},
+		{latlng:[59.928056, 30.348333], title:'Владимирский собор', link:"http://goo.gl/d6uXI"},
+		{latlng:[59.919722, 30.388611], title:'Александро-Невская лавра', link:"http://goo.gl/wbje3"},
+		{latlng:[59.916253, 30.353564], title:'Крестовоздвиженский собор', link:"http://goo.gl/UCzpj"},
+		{latlng:[59.943056, 30.3525], title:'Спасо-Преображенский собор', link:"http://goo.gl/8KrLR"},
+		{latlng:[59.878889, 29.912778], title:'Собор Петра и Павла', link:"http://goo.gl/YrYLy"}
+	];
+
+	var architecture_data = [
+		{latlng:[59.933333, 30.343333], title:'Аничков мост', link:"http://goo.gl/sLcGk"},
+		{latlng:[59.935833, 30.325556], title:'Дом Книги', link:"http://goo.gl/U7Hje"},
+		{latlng:[59.95, 30.317], title:'Петропавловская крепость', link:"http://goo.gl/7YNH9"},
+		{latlng:[59.939167, 30.315833], title:'Дворцовая площадь', link:"http://goo.gl/v1XRs"},
+		{latlng:[59.852028, 30.323314], title:'Московская площадь', link:"http://goo.gl/n84iJ"},
+		{latlng:[59.944167, 30.306667], title:'Стрелка Васильевского острова', link:"http://goo.gl/pQ9bY"},
+		{latlng:[59.930967, 30.361833], title:'Площадь Восстания', link:"http://goo.gl/INM3k"},
+		{latlng:[59.900842, 30.273822], title:'Нарвские триумфальные ворота', link:"http://goo.gl/MUUME"},
+		{latlng:[59.941111, 30.308475], title:'Дворцовый мост', link:"http://goo.gl/Ew34O"},
+		{latlng:[59.885556, 29.903889], title:'Дворцово-парковый ансамбль', link:"http://goo.gl/8dQ6y"}		
+	];
+
+	var museums_data = [
+		{latlng:[59.940556, 30.313611], title:'Государственный Эрмитаж', link:"http://goo.gl/RpoSm"},
+		{latlng:[59.938681, 30.332386], title:'Государственный Русский музей', link:"http://goo.gl/hrkUI"},
+		{latlng:[59.944847, 30.326753], title:'Мраморный дворец', link:"http://goo.gl/Sua4O"},
+		{latlng:[59.941667, 30.304444], title:'Кунсткамера', link:"http://goo.gl/17wGu"},
+		{latlng:[59.949439, 30.362636], title:'Музей кофе', link:"http://goo.gl/zkaE8"},
+		{latlng:[59.969719, 30.300361], title:'Музей игрушки', link:"http://goo.gl/Xvj0f"},
+		{latlng:[59.948886, 30.374992], title:'Вселенная Воды', link:"http://goo.gl/sa81d"},
+		{latlng:[59.955278, 30.338056], title:'Аврора', link:"http://goo.gl/qOzIg"},
+		{latlng:[59.927222, 30.350936], title:'Музей Ф. М. Достоевского', link:"http://goo.gl/w3pU5"},
+		{latlng:[59.953333, 30.330833], title:'Домик Петра I', link:"http://goo.gl/FCYUd"}	
+	];
+
+	var theatres_data = [
+		{latlng:[59.919, 30.313114], title:'Молодёжный театр на Фонтанке', link:"http://goo.gl/DNUpf"},
+		{latlng:[59.925556, 30.296111], title:'Мариинский театр', link:"http://goo.gl/dB1jC"},
+		{latlng:[59.937781, 30.329444], title:'Михайловский театр', link:"http://goo.gl/bNPcI"},
+		{latlng:[59.931775, 30.336314], title:'Александринский театр', link:"http://goo.gl/B0q49"},
+		{latlng:[60.401667, 30.567222], title:'Театр «Ювента»', link:"http://goo.gl/0wYEX"},
+		{latlng:[59.914167, 30.309167], title:'Детский театр «На Неве»', link:"http://goo.gl/J0ESf"},
+		{latlng:[59.9177, 30.304533], title:'Театр Дождей', link:"http://goo.gl/rFs3j"},
+		{latlng:[59.930283, 30.344878], title:'Театр Европы', link:"http://goo.gl/4cK7W"},
+		{latlng:[59.927333, 30.330994], title:'Театр имени Г. А. Товстоногова', link:"http://goo.gl/1ngmO"},
+		{latlng:[59.962222, 30.313333], title:'Драматический театр «Остров»', link:"http://goo.gl/4atDY"}	
+	];
+	
+	var monuments_data = [
+		{latlng:[59.9364, 30.3022], title:'Медный всадник', link:"http://goo.gl/IWCbu"},
+		{latlng:[59.933333, 30.336944], title:'Памятник Екатерине II', link:"http://goo.gl/En4z7"},
+		{latlng:[59.949603, 30.363422], title:'Жертвам политических репрессий', link:"http://goo.gl/63LJo"},
+		{latlng:[59.8914, 30.3194], title:'Московские Триумфальные ворота', link:"http://goo.gl/cWdqW"},
+		{latlng:[59.941722, 30.337967], title:'Памятник Чижику-Пыжику', link:"http://goo.gl/J0YcW"},
+		{latlng:[59.861111, 30.258333], title:'Памятник «Танк-победитель»', link:"http://goo.gl/boHkU"},
+		{latlng:[59.885556, 30.465], title:'Невский мемориал «Журавли»', link:"http://goo.gl/HL1zb"},
+		{latlng:[59.916392, 30.307164], title:'Колонна Славы', link:"http://goo.gl/7IJgY"},
+		{latlng:[59.931944, 30.308333], title:'Памятник Николаю I', link:"http://goo.gl/ULz34"},
+		{latlng:[59.938175, 30.292858], title:'Румянцевский обелиск', link:"http://goo.gl/SI9DC"}	
+	];
+	
+	
+	var cathedrals_markers = loadMarkerGroup(cathedrals_data),
+		architecture_markers = loadMarkerGroup(architecture_data),
+		museums_markers = loadMarkerGroup(museums_data),
+		theatres_markers = loadMarkerGroup(theatres_data),
+		monuments_markers = loadMarkerGroup(monuments_data);
+
+	var architecture = L.layerGroup(architecture_markers),
+		cathedrals = L.layerGroup(cathedrals_markers),
+		museums = L.layerGroup(museums_markers),
+		theatres = L.layerGroup(theatres_markers),
+		monuments = L.layerGroup(monuments_markers);
 
 	var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png',
 	cloudmadeAttribution = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
@@ -45,7 +126,7 @@
 
 		function onLocationFound(e) {
 			var radius = e.accuracy / 2;
-			
+
 			var redIcon = L.icon({
 				iconUrl: 'marker-icon-red.png',
 				iconSize: [25, 41], // size of the icon
@@ -54,7 +135,7 @@
 			var geolocMarker = L.marker(e.latlng, {icon: redIcon}).addTo(map);
             geolocMarker.bindPopup("Вы в радиусе " + radius + " метров отсюда");
             var circle = L.circle(e.latlng, radius).addTo(map);
-			
+
 			function onMapClick(e) {
 				map.doubleClickZoom.enable();
 				geolocMarker.setLatLng(e.latlng);
@@ -62,7 +143,7 @@
 			}
 
 			map.on('dblclick', onMapClick);
-			
+
 			map.setView(e.latlng, 12);
 		}
 
@@ -81,14 +162,13 @@
 	"Архитектура": architecture,	
 	"Музеи": museums,
 	"Памятники": monuments,
-	"Театры": theatres,
-	"Храмы": cathedrals
-
+	"Соборы": cathedrals,
+	"Театры": theatres
 	};
 
 	L.control.layers(null, overlayMaps).addTo(map);
 
 		</script>
-		
+
 	</body>
 	</HTML>
