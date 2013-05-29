@@ -8,13 +8,39 @@
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
 	<![endif]-->
 
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<script type="text/javascript" src="http://webstyle.kz/moduli/modul2/lib/prototype/prototype.js"></script>
+	<script type="text/javascript" src="http://webstyle.kz/moduli/modul2/lib/scriptaculous/scriptaculous.js"></script>
+	<script type="text/javascript" src="http://webstyle.kz/moduli/modul2/src/HelpBalloon.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="http://webstyle.kz/moduli/modul2/assets/style.css">
+
+	<script type="text/javascript">
+		HelpBalloon.Options.prototype = Object.extend(HelpBalloon.Options.prototype, {
+			icon: 'icon.gif',
+			button: 'button.png',
+			balloonPrefix: 'balloon-'
+
+		});
+	</script>
+
 	</head>
 
-
-
 	<body>
+	
+	<div class="left">
+	<script type="text/javascript">
+		var hb1 = new HelpBalloon({
+			title: 'Информация',
+			content: 'Вас приветствует сайт о достопримечательностях Санкт-Петербурга. Достопримечательности на карте обозначениы синими маркерами. Для перехода на статью кликните на соответствующую ссылку. Для настраивания отображения достопримечательностей воспользуйтесь фильтром в правом верхнем углу. Ваше текущее местоложение обозначено красным маркером. Для выбора местоположения дважды кликните в любом месте карты.'
+			+ '',
+			useEvent: ['mouseover']
+		});
+	</script>
+	</div>
+	
 	<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
-	<div id="map" style="wigth: 100%; height: 100%; position: relative;"></div>
+	<div id="map" style="width: 100%; height: 100%; position: relative;"></div>
 
 	<script>
 
