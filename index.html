@@ -17,18 +17,18 @@
 
 	<script type="text/javascript">
 		HelpBalloon.Options.prototype = Object.extend(HelpBalloon.Options.prototype, {
-			icon: 'icon.gif',
+			icon: 'info4.jpg',
 			button: 'button.png',
 			balloonPrefix: 'balloon-'
 
 		});
 	</script>
-
+	
 	</head>
 
 	<body>
 	
-	<div class="left">
+	<span class="left">
 	<script type="text/javascript">
 		var hb1 = new HelpBalloon({
 			title: 'Информация',
@@ -37,7 +37,11 @@
 			useEvent: ['mouseover']
 		});
 	</script>
-	</div>
+	</span>
+	
+	<span id="header" style="position: relative; float: center; align: center; vertical-align: top;">
+		<strong style="text-shadow: 1px 1px 2px #404040; font: bold 25px Times New Roman; color: red; vertical-align: top;">Достопримечательности Санкт-Петербурга</strong>
+	</span>
 	
 	<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
 	<div id="map" style="width: 100%; height: 100%; position: relative;"></div>
@@ -151,7 +155,7 @@
 		}).addTo(map);
 
 		function onLocationFound(e) {
-			var radius = e.accuracy / 2;
+			var radius = e.accuracy > 2000 ? 1000 : e.accuracy / 2;
 
 			var redIcon = L.icon({
 				iconUrl: 'marker-icon-red.png',
